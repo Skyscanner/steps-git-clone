@@ -45,7 +45,7 @@ func (g *Git) Checkout(arg string) *command.Model {
 // Merge joins two or more development histories together.
 // Arg can be a commit hash, branch or tag.
 func (g *Git) Merge(arg string) *command.Model {
-	return g.command("merge", "--allow-unrelated-histories", arg)
+	return g.command("merge", arg)
 }
 
 // Reset the current branch head to commit and possibly updates the index.
@@ -66,7 +66,7 @@ func (g *Git) SubmoduleUpdate(shallowCheckout bool, opts ...string) *command.Mod
 	args := []string{"submodule", "update", "--init", "--recursive"}
 	args = append(args, opts...)
 	if shallowCheckout {
-		args = append(args, "--depth=1")
+		args = append(args, "--depth=1", "--no-single-branch")
 	}
 	return g.command(args...)
 }
