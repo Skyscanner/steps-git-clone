@@ -41,7 +41,7 @@ func fetch(gitCmd git.Git, remote string, ref string, traits fetchOptions) error
 	opts = append(opts, jobsFlag)
 
 	if traits.depth != 0 {
-		opts = append(opts, "--depth="+strconv.Itoa(traits.depth))
+		opts = append(opts, "--depth="+strconv.Itoa(traits.depth), "--no-single-branch")
 	}
 	if traits.filterTree {
 		opts = append(opts, `--filter=tree:0`)

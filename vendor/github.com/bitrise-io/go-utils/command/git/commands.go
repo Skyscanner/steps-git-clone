@@ -66,7 +66,7 @@ func (g *Git) SubmoduleUpdate(shallowCheckout bool, opts ...string) *command.Mod
 	args := []string{"submodule", "update", "--init", "--recursive"}
 	args = append(args, opts...)
 	if shallowCheckout {
-		args = append(args, "--depth=1", "--no-single-branch")
+		args = append(args, "--depth=1")
 	}
 	return g.command(args...)
 }
